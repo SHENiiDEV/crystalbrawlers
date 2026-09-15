@@ -1,9 +1,13 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import { ShieldCheck, Lock, CheckCircle2, CreditCard, Cpu } from 'lucide-react';
 
 export default function PaymentSecurity() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     return (
         <MainLayout>
             <Head title="Payment Security & PCI DSS Standards • Crystal Brawlers" />
@@ -56,14 +60,14 @@ export default function PaymentSecurity() {
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">2. Tokenization Architecture</h2>
                         <p>
-                            We employ direct tokenization. When you submit payment information for virtual coins or packages, your card details are transmitted directly to the secure PCI-compliant processor vault. Crystal Brawlers only receives a cryptographically signed token representing the successful charge.
+                            We employ direct tokenization. When you submit payment information for virtual coins or packages, your card details are transmitted directly to the secure PCI-compliant processor vault. {companyName} only receives a cryptographically signed token representing the successful charge.
                         </p>
                     </section>
 
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">3. Automated Invoicing & Purchase Receipts</h2>
                         <p>
-                            Every completed transaction generates an immutable order invoice and receipt sent directly to your registered email address from <span className="text-cyan-400 font-bold">info@crystalbrawlers.com</span>. You can also view and print your complete order history under the <Link href="/invoices" className="text-cyan-400 hover:underline">Order Receipts</Link> portal.
+                            Every completed transaction generates an immutable order invoice and receipt sent directly to your registered email address from <span className="text-cyan-400 font-bold">{companyEmail}</span>. You can also view and print your complete order history under the <Link href="/invoices" className="text-cyan-400 hover:underline">Order Receipts</Link> portal.
                         </p>
                     </section>
 

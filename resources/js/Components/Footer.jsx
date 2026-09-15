@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ShieldCheck, Cpu, Flame, Lock, Globe, Mail, HelpCircle, FileText, CheckCircle2 } from 'lucide-react';
 
 export default function Footer() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyNumber = company?.number || '2026-EU-984210';
+    const companyAddress = company?.address || 'Tower 4, Fintech Square, Level 8, London, UK';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     return (
         <footer className="bg-[#05080f] border-t border-slate-900 text-slate-400 text-xs">
             
@@ -64,10 +70,11 @@ export default function Footer() {
                         High-octane browser 2D fantasy brawler built for instant competitive action. Real-time multiplayer combat, deep RPG upgrades, and secure global payment infrastructure.
                     </p>
 
-                    <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-[11px] text-slate-400 space-y-1">
-                        <div><strong>Corporate Entity:</strong> Crystal Brawlers Interactive Ltd.</div>
-                        <div><strong>Registration No:</strong> 2026-EU-984210</div>
-                        <div><strong>Support Desk:</strong> <a href="mailto:info@crystalbrawlers.com" className="text-cyan-400 hover:underline">info@crystalbrawlers.com</a></div>
+                    <div className="p-3.5 bg-slate-900/70 rounded-2xl border border-slate-800 text-[11px] text-slate-400 space-y-1.5">
+                        <div><strong className="text-slate-200">Legal Entity:</strong> {companyName}</div>
+                        <div><strong className="text-slate-200">Company No:</strong> {companyNumber}</div>
+                        <div><strong className="text-slate-200">Registered Office:</strong> {companyAddress}</div>
+                        <div><strong className="text-slate-200">Support Desk:</strong> <a href={`mailto:${companyEmail}`} className="text-cyan-400 hover:underline">{companyEmail}</a></div>
                     </div>
                 </div>
 
@@ -120,7 +127,7 @@ export default function Footer() {
             {/* Bottom Copyright & Disclaimer */}
             <div className="border-t border-slate-900 bg-[#04060b] py-6">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                    <p>© {new Date().getFullYear()} Crystal Brawlers Interactive Ltd. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} {companyName}. All rights reserved.</p>
                     <p className="text-center sm:text-right">
                         All trademarks, service marks, and trade names of Visa, Mastercard, and PCI-DSS are used under respective authorization guidelines.
                     </p>

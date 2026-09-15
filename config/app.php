@@ -17,6 +17,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Corporate Legal Entity & Merchant Details
+    |--------------------------------------------------------------------------
+    */
+    'company' => [
+        'name' => env('COMPANY_NAME', 'Crystal Brawlers Interactive Ltd.'),
+        'number' => env('COMPANY_NUMBER', '2026-EU-984210'),
+        'address' => env('COMPANY_ADDRESS', 'Tower 4, Fintech Square, Level 8, London, UK'),
+        'email' => env('COMPANY_EMAIL', 'info@crystalbrawlers.com'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

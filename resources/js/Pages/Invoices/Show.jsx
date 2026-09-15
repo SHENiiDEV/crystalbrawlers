@@ -1,9 +1,15 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import { Printer, ArrowLeft, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function Show({ invoice }) {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyNumber = company?.number || '2026-EU-984210';
+    const companyAddress = company?.address || 'Tower 4, Fintech Square, Level 8, London, UK';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     const handlePrint = () => {
         window.print();
     };
@@ -46,9 +52,10 @@ export default function Show({ invoice }) {
                                 </span>
                             </div>
                             <p className="text-xs text-slate-400 print:text-slate-600 leading-relaxed">
-                                Crystal Brawlers Interactive Ltd.<br />
-                                Registration No: 2026-EU-984210<br />
-                                Support: info@crystalbrawlers.com
+                                {companyName}<br />
+                                Registration No: {companyNumber}<br />
+                                Address: {companyAddress}<br />
+                                Support: {companyEmail}
                             </p>
                         </div>
 
@@ -117,7 +124,7 @@ export default function Show({ invoice }) {
                     {/* Footer Note */}
                     <div className="border-t border-slate-800 pt-6 text-[11px] text-slate-500 print:text-slate-600 text-center space-y-1">
                         <p>This document serves as proof of digital purchase in the Crystal Brawlers online platform.</p>
-                        <p>Questions or inquiries? Contact support at <strong className="text-slate-300 print:text-black">info@crystalbrawlers.com</strong>.</p>
+                        <p>Questions or inquiries? Contact support at <strong className="text-slate-300 print:text-black">{companyEmail}</strong>.</p>
                     </div>
 
                 </div>

@@ -92,7 +92,9 @@
         </div>
 
         <div class="footer">
-            <p>Crystal Brawlers Inc. • Support: <a href="mailto:info@crystalbrawlers.com" style="color: #38bdf8; text-decoration: none;">info@crystalbrawlers.com</a></p>
+            <p><strong>{{ config('app.company.name', 'Crystal Brawlers Interactive Ltd.') }}</strong> (Reg: {{ config('app.company.number', '2026-EU-984210') }})</p>
+            <p>{{ config('app.company.address', 'Tower 4, Fintech Square, Level 8, London, UK') }}</p>
+            <p>Support: <a href="mailto:{{ config('app.company.email', 'info@crystalbrawlers.com') }}" style="color: #38bdf8; text-decoration: none;">{{ config('app.company.email', 'info@crystalbrawlers.com') }}</a></p>
         </div>
     </div>
 </body>

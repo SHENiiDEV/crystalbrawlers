@@ -1,9 +1,13 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import { Cookie, ShieldCheck } from 'lucide-react';
 
 export default function CookiePolicy() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     return (
         <MainLayout>
             <Head title="Cookie Policy • Crystal Brawlers" />
@@ -25,7 +29,7 @@ export default function CookiePolicy() {
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">1. What Are Cookies?</h2>
                         <p>
-                            Cookies are small text files stored on your browser or device when visiting web platforms. They enable our servers to recognize your session, maintain secure authentication, and remember your character preferences.
+                            Cookies are small text files stored on your browser or device when visiting {companyName} web platforms. They enable our servers to recognize your session, maintain secure authentication, and remember your character preferences.
                         </p>
                     </section>
 
@@ -50,7 +54,7 @@ export default function CookiePolicy() {
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">3. Managing Your Cookie Preferences</h2>
                         <p>
-                            You may configure your browser settings at any time to block or notify you about cookies. Note that disabling strictly necessary session cookies will prevent login and gameplay functionality.
+                            You may configure your browser settings at any time to block or notify you about cookies. For assistance regarding cookie management, email <span className="text-cyan-400 font-bold">{companyEmail}</span>. Note that disabling strictly necessary session cookies will prevent login and gameplay functionality.
                         </p>
                     </section>
 

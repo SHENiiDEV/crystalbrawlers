@@ -69,7 +69,13 @@ class HandleInertiaRequests extends Middleware
                 fn () => Skin::all()->mapWithKeys(fn (Skin $skin) => [$skin->slug => $skin->palette])->filter()->all()
             ),
             'game_config' => [
-                'ws_server_url' => env('ARENA_WS_URL', 'http://localhost:3001'),
+                'ws_server_url' => env('ARENA_WS_URL', 'http://localhost:3008'),
+            ],
+            'company' => [
+                'name' => config('app.company.name', env('COMPANY_NAME', 'Crystal Brawlers Interactive Ltd.')),
+                'number' => config('app.company.number', env('COMPANY_NUMBER', '2026-EU-984210')),
+                'address' => config('app.company.address', env('COMPANY_ADDRESS', 'Tower 4, Fintech Square, Level 8, London, UK')),
+                'email' => config('app.company.email', env('COMPANY_EMAIL', 'info@crystalbrawlers.com')),
             ],
         ];
     }

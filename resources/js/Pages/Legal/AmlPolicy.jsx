@@ -1,9 +1,13 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import { Globe, ShieldAlert, CheckCircle2 } from 'lucide-react';
 
 export default function AmlPolicy() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     return (
         <MainLayout>
             <Head title="Anti-Money Laundering & Sanctions Policy • Crystal Brawlers" />
@@ -25,7 +29,7 @@ export default function AmlPolicy() {
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">1. Policy Statement</h2>
                         <p>
-                            Crystal Brawlers Interactive Ltd. is committed to maintaining high standards of compliance with all applicable anti-money laundering, counter-terrorist financing (CTF), and international trade sanctions regulations.
+                            {companyName} is committed to maintaining high standards of compliance with all applicable anti-money laundering, counter-terrorist financing (CTF), and international trade sanctions regulations.
                         </p>
                     </section>
 

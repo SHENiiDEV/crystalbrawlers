@@ -1,9 +1,13 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import { ShieldCheck, Scale, AlertCircle } from 'lucide-react';
 
 export default function Terms() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     return (
         <MainLayout>
             <Head title="Terms and Conditions • Crystal Brawlers" />
@@ -25,7 +29,7 @@ export default function Terms() {
                     <section className="space-y-2">
                         <h2 className="text-base font-display text-white">1. Agreement to Terms</h2>
                         <p>
-                            By creating an account, accessing, or using the Crystal Brawlers web portal and real-time game servers, you agree to be bound by these Terms and Conditions. If you do not agree, you must immediately cease use of our services.
+                            By creating an account, accessing, or using the {companyName} ("Crystal Brawlers") web portal and real-time game servers, you agree to be bound by these Terms and Conditions. If you do not agree, you must immediately cease use of our services.
                         </p>
                     </section>
 
@@ -60,7 +64,7 @@ export default function Terms() {
                     <section className="space-y-2">
                         <h2 className="text-base font-display text-white">6. Limitation of Liability & Contact</h2>
                         <p>
-                            Crystal Brawlers is provided "as-is". For legal inquiries or support questions, contact <span className="text-cyan-400 font-bold">legal@crystalbrawlers.com</span>.
+                            Crystal Brawlers is operated by {companyName} and provided "as-is". For legal inquiries or support questions, contact <span className="text-cyan-400 font-bold">{companyEmail}</span>.
                         </p>
                     </section>
 

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import { Mail, MapPin, MessageSquare, Send, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyNumber = company?.number || '2026-EU-984210';
+    const companyAddress = company?.address || 'Tower 4, Fintech Square, Level 8, London, UK';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     const [submitted, setSubmitted] = useState(false);
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
 
@@ -41,8 +47,8 @@ export default function Contact() {
                                 <div>
                                     <span className="text-[10px] uppercase font-bold text-slate-500">Official Support Email</span>
                                     <p className="text-sm font-bold text-white">
-                                        <a href="mailto:info@crystalbrawlers.com" className="text-cyan-400 hover:underline">
-                                            info@crystalbrawlers.com
+                                        <a href={`mailto:${companyEmail}`} className="text-cyan-400 hover:underline">
+                                            {companyEmail}
                                         </a>
                                     </p>
                                 </div>
@@ -55,8 +61,9 @@ export default function Contact() {
                                 <div>
                                     <span className="text-[10px] uppercase font-bold text-slate-500">Corporate Headquarters</span>
                                     <p className="text-xs font-bold text-slate-300">
-                                        Crystal Brawlers Interactive Ltd.<br />
-                                        Tower 4, Fintech Square, Level 8
+                                        {companyName}<br />
+                                        {companyAddress}<br />
+                                        <span className="text-slate-500 text-[10px]">Reg No: {companyNumber}</span>
                                     </p>
                                 </div>
                             </div>
@@ -84,7 +91,7 @@ export default function Contact() {
                                 </div>
                                 <h3 className="text-xl font-black font-heading uppercase text-white">Message Dispatched!</h3>
                                 <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                                    Thank you for reaching out. A confirmation has been sent from <span className="text-cyan-400">info@crystalbrawlers.com</span>. Our support specialists will respond within 24 hours.
+                                    Thank you for reaching out. A confirmation has been sent from <span className="text-cyan-400">{companyEmail}</span>. Our support specialists will respond within 24 hours.
                                 </p>
                             </div>
                         ) : (

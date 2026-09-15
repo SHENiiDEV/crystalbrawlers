@@ -1,9 +1,13 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import { RotateCcw, AlertCircle, ShieldCheck } from 'lucide-react';
 
 export default function RefundPolicy() {
+    const { company } = usePage().props;
+    const companyName = company?.name || 'Crystal Brawlers Interactive Ltd.';
+    const companyEmail = company?.email || 'info@crystalbrawlers.com';
+
     return (
         <MainLayout>
             <Head title="Refund & Cancellation Policy • Crystal Brawlers" />
@@ -25,7 +29,7 @@ export default function RefundPolicy() {
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">1. Digital Goods & Virtual Content</h2>
                         <p>
-                            All purchases made within Crystal Brawlers (including Gold Coins, Crystals, Character Skins, and Stat Upgrades) constitute non-tangible digital items that are delivered immediately upon successful transaction completion.
+                            All purchases made within Crystal Brawlers ({companyName}) (including Gold Coins, Crystals, Character Skins, and Stat Upgrades) constitute non-tangible digital items that are delivered immediately upon successful transaction completion.
                         </p>
                     </section>
 
@@ -49,7 +53,7 @@ export default function RefundPolicy() {
                     <section className="space-y-2">
                         <h2 className="text-base font-black font-heading uppercase text-white">4. Refund Request Process</h2>
                         <p>
-                            To submit a refund inquiry, email our billing department at <span className="text-cyan-400 font-bold">info@crystalbrawlers.com</span> with your Order Invoice Number (e.g., <code>INV-2026-XXXXX</code>), registered account email, and explanation of the issue. Requests are reviewed within 2-3 business days.
+                            To submit a refund inquiry, email our billing department at <span className="text-cyan-400 font-bold">{companyEmail}</span> with your Order Invoice Number (e.g., <code>INV-2026-XXXXX</code>), registered account email, and explanation of the issue. Requests are reviewed within 2-3 business days.
                         </p>
                     </section>
 
