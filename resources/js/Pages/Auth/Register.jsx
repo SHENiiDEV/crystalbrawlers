@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import Modal from '../../Components/Modal';
@@ -27,6 +27,28 @@ export default function Register({ allowedCountries = [] }) {
         // Step 3: Agreements
         terms_accepted: false,
     });
+
+    // Password rule criteria
+    const passRules = {
+        length: (data.password || '').length >= 8,
+        letters: /[a-zA-Z]/.test(data.password || ''),
+        numbers: /[0-9]/.test(data.password || ''),
+        symbols: /[^a-zA-Z0-9]/.test(data.password || ''),
+    };
+
+    // Automatically navigate user back to the step containing errors
+    useEffect(() => {
+        if (errors && Object.keys(errors).length > 0) {
+            const step1Keys = ['name', 'surname', 'email', 'password', 'password_confirmation', 'date_of_birth', 'phone'];
+            const step2Keys = ['country', 'street_address', 'city', 'post_code'];
+            
+            if (Object.keys(errors).some(key => step1Keys.includes(key))) {
+                setCurrentStep(1);
+            } else if (Object.keys(errors).some(key => step2Keys.includes(key))) {
+                setCurrentStep(2);
+            }
+        }
+    }, [errors]);
 
     // Password strength evaluator
     const getPasswordStrength = (pass) => {
@@ -68,8 +90,20 @@ export default function Register({ allowedCountries = [] }) {
             alert('Passwords do not match.');
             return false;
         }
-        if (data.password.length < 8) {
+        if (!passRules.length) {
             alert('Password must be at least 8 characters long.');
+            return false;
+        }
+        if (!passRules.letters) {
+            alert('Password must contain at least one letter.');
+            return false;
+        }
+        if (!passRules.numbers) {
+            alert('Password must contain at least one number.');
+            return false;
+        }
+        if (!passRules.symbols) {
+            alert('Password must contain at least one symbol (e.g. !@#$%^&*).');
             return false;
         }
         if (age !== null && age < 18) {
@@ -98,7 +132,18 @@ export default function Register({ allowedCountries = [] }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/register');
+        post('/register', {
+            onError: (errs) => {
+                const step1Keys = ['name', 'surname', 'email', 'password', 'password_confirmation', 'date_of_birth', 'phone'];
+                const step2Keys = ['country', 'street_address', 'city', 'post_code'];
+                
+                if (Object.keys(errs).some(key => step1Keys.includes(key))) {
+                    setCurrentStep(1);
+                } else if (Object.keys(errs).some(key => step2Keys.includes(key))) {
+                    setCurrentStep(2);
+                }
+            }
+        });
     };
 
     return (
@@ -137,6 +182,24 @@ export default function Register({ allowedCountries = [] }) {
 
                 {/* Form Container */}
                 <div className="toon-card p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+                    
+                    {/* Backend Validation Errors Alert Box */}
+                    {Object.keys(errors).length > 0 && (
+                        <div className="mb-6 p-4 rounded-xl bg-rose-950/70 border-2 border-rose-500/60 text-xs text-rose-200 flex items-start gap-3 shadow-lg animate-in fade-in duration-200">
+                            <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+                            <div className="space-y-1">
+                                <p className="font-extrabold text-rose-300 font-heading uppercase text-[11px] tracking-wider">
+                                    Registration Failed — Please Fix The Following:
+                                </p>
+                                <ul className="list-disc pl-4 space-y-0.5 text-xs text-rose-100/90 font-medium">
+                                    {Object.entries(errors).map(([field, msg]) => (
+                                        <li key={field}>{msg}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    )}
+
                     <form onSubmit={currentStep === 3 ? handleSubmit : handleNext} className="space-y-6">
 
                         {/* STEP 1: Account & Personal Info */}
@@ -206,17 +269,35 @@ export default function Register({ allowedCountries = [] }) {
                                         </div>
                                         {/* Password Strength Indicator */}
                                         {data.password && (
-                                            <div className="mt-1.5 space-y-1">
+                                            <div className="mt-1.5 space-y-1.5">
                                                 <div className="h-1.5 w-full bg-[#2a1a52] rounded-full overflow-hidden">
                                                     <div 
                                                         className={`h-full ${passwordStrength.color} transition-all duration-300`} 
                                                         style={{ width: `${passwordStrength.score}%` }}
                                                     ></div>
                                                 </div>
-                                                <span className="text-[10px] text-violet-100/60">Strength: <strong className="text-violet-50">{passwordStrength.label}</strong></span>
+                                                <div className="flex items-center justify-between text-[10px] text-violet-100/60">
+                                                    <span>Strength: <strong className="text-violet-50">{passwordStrength.label}</strong></span>
+                                                </div>
+
+                                                {/* Password Requirements Checklist */}
+                                                <div className="grid grid-cols-2 gap-1 text-[10px] bg-[#120a26] p-2 rounded-lg border border-[#241548]">
+                                                    <div className={`flex items-center gap-1 font-medium ${passRules.length ? 'text-emerald-400' : 'text-slate-500'}`}>
+                                                        <span>{passRules.length ? '✓' : '○'}</span> Min 8 chars
+                                                    </div>
+                                                    <div className={`flex items-center gap-1 font-medium ${passRules.letters ? 'text-emerald-400' : 'text-slate-500'}`}>
+                                                        <span>{passRules.letters ? '✓' : '○'}</span> Letters (a-z, A-Z)
+                                                    </div>
+                                                    <div className={`flex items-center gap-1 font-medium ${passRules.numbers ? 'text-emerald-400' : 'text-slate-500'}`}>
+                                                        <span>{passRules.numbers ? '✓' : '○'}</span> Numbers (0-9)
+                                                    </div>
+                                                    <div className={`flex items-center gap-1 font-medium ${passRules.symbols ? 'text-emerald-400' : 'text-slate-500'}`}>
+                                                        <span>{passRules.symbols ? '✓' : '○'}</span> Symbol (!@#$...)
+                                                    </div>
+                                                </div>
                                             </div>
                                         )}
-                                        {errors.password && <p className="text-rose-400 text-[10px] mt-1">{errors.password}</p>}
+                                        {errors.password && <p className="text-rose-400 text-[10px] font-bold mt-1.5 bg-rose-950/80 p-1.5 rounded border border-rose-500/50">{errors.password}</p>}
                                     </div>
 
                                     <div>
