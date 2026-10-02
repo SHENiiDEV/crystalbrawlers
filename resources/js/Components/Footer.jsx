@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
-import { ShieldCheck, Cpu, Flame, Lock, Globe, Mail, HelpCircle, FileText, CheckCircle2 } from 'lucide-react';
 
 export default function Footer() {
     const { company } = usePage().props;
@@ -12,41 +11,10 @@ export default function Footer() {
     return (
         <footer className="bg-[#05080f] border-t border-slate-900 text-slate-400 text-xs">
             
-            {/* Top Payment Security & Compliance Banner featuring Official Logos */}
-            <div className="border-b border-slate-900/90 bg-slate-950/60 py-6">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                    
-                    {/* Left: Security and compliance badges */}
-                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6">
-                        <div className="flex items-center gap-2 bg-slate-900/80 px-3.5 py-2 rounded-xl border border-slate-800 text-slate-300 font-semibold">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>30 TPS Live Physics Netcode</span>
-                        </div>
-                        <div className="flex items-center gap-2 bg-slate-900/80 px-3.5 py-2 rounded-xl border border-slate-800 text-slate-300 font-semibold">
-                            <Lock className="w-4 h-4 text-cyan-400" />
-                            <span>256-Bit SSL Encrypted Checkout</span>
-                        </div>
-                    </div>
-
-                    {/* Right: Payment Provider Official Logos matching uploaded assets */}
-                    <div className="flex items-center gap-4 bg-slate-900/90 px-5 py-2 rounded-2xl border border-slate-800/90 shadow-xl">
-                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mr-1">
-                            Accepted Methods:
-                        </span>
-                        {/* Visa Logo */}
-                        <div className="h-6 w-14 flex items-center justify-center bg-white rounded px-1.5 py-0.5 shadow-sm">
-                            <img src="/images/payments/visa.png" alt="Visa" className="max-h-full max-w-full object-contain" />
-                        </div>
-                        {/* Mastercard Logo */}
-                        <div className="h-6 w-12 flex items-center justify-center bg-white rounded px-1 py-0.5 shadow-sm">
-                            <img src="/images/payments/mastercard.png" alt="Mastercard" className="max-h-full max-w-full object-contain" />
-                        </div>
-                        {/* PCI DSS Compliant Logo */}
-                        <div className="h-6 w-14 flex items-center justify-center bg-white rounded px-1.5 py-0.5 shadow-sm">
-                            <img src="/images/payments/pci-dss.png" alt="PCI DSS Compliant" className="max-h-full max-w-full object-contain" />
-                        </div>
-                    </div>
-
+            <div className="border-b border-slate-900 bg-slate-950/60 py-5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3 text-sm">
+                    <span>Digital game content · For players aged 18+</span>
+                    <Link href="/payment-security" className="text-cyan-300 hover:underline">Payment & delivery information</Link>
                 </div>
             </div>
 
@@ -67,7 +35,7 @@ export default function Footer() {
                     </div>
 
                     <p className="text-slate-400 leading-relaxed max-w-sm">
-                        High-octane browser 2D fantasy brawler built for instant competitive action. Real-time multiplayer combat, deep RPG upgrades, and secure global payment infrastructure.
+                        High-octane browser 2D fantasy brawler built for instant competitive action. Real-time multiplayer combat, character upgrades, and in-game cosmetics.
                     </p>
 
                     <div className="p-3.5 bg-slate-900/70 rounded-2xl border border-slate-800 text-[11px] text-slate-400 space-y-1.5">
@@ -114,11 +82,11 @@ export default function Footer() {
                     </h4>
                     <ul className="space-y-2">
                         <li><Link href="/terms" className="hover:text-cyan-400 transition">Terms of Service</Link></li>
-                        <li><Link href="/privacy" className="hover:text-cyan-400 transition">Privacy Policy (GDPR)</Link></li>
+                        <li><Link href="/privacy" className="hover:text-cyan-400 transition">Privacy Policy</Link></li>
                         <li><Link href="/refund-policy" className="hover:text-cyan-400 transition">Refund & Cancellation</Link></li>
-                        <li><Link href="/aml-policy" className="hover:text-cyan-400 transition">AML & Sanctions</Link></li>
-                        <li><Link href="/cookie-policy" className="hover:text-cyan-400 transition">Cookie Preferences</Link></li>
-                        <li><Link href="/payment-security" className="hover:text-cyan-400 transition">PCI DSS Security</Link></li>
+                        <li><Link href="/aml-policy" className="hover:text-cyan-400 transition">Acceptable Use & Sanctions</Link></li>
+                        <li><Link href="/cookie-policy" className="hover:text-cyan-400 transition">Cookie Policy</Link></li>
+                        <li><Link href="/payment-security" className="hover:text-cyan-400 transition">Payment & Delivery</Link></li>
                     </ul>
                 </div>
 
@@ -129,7 +97,7 @@ export default function Footer() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
                     <p>© {new Date().getFullYear()} {companyName}. All rights reserved.</p>
                     <p className="text-center sm:text-right">
-                        All trademarks, service marks, and trade names of Visa, Mastercard, and PCI-DSS are used under respective authorization guidelines.
+                        Gold Coins and Crystals are for in-game use only. No cash withdrawals.
                     </p>
                 </div>
             </div>

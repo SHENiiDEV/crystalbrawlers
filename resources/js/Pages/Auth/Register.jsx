@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import MainLayout from '../../Layouts/MainLayout';
 import Modal from '../../Components/Modal';
+import { PolicyBody } from '../../Components/LegalDocument';
+import { POLICY_DATE } from '../Legal/policies';
 import { ShieldCheck, User, Mail, Lock, Calendar, Phone, MapPin, Globe, CheckCircle2, AlertTriangle, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function Register({ allowedCountries = [] }) {
@@ -474,13 +476,13 @@ export default function Register({ allowedCountries = [] }) {
                                             >
                                                 Terms & Conditions
                                             </button>
-                                            {' '}and{' '}
+                                            {' '}. I acknowledge the{' '}
                                             <button
                                                 type="button"
                                                 onClick={() => setModalState({ open: true, type: 'privacy' })}
                                                 className="text-cyan-400 hover:underline font-bold"
                                             >
-                                                Privacy Policy (GDPR)
+                                                Privacy Policy
                                             </button>.
                                         </span>
                                     </label>
@@ -536,24 +538,17 @@ export default function Register({ allowedCountries = [] }) {
                 onClose={() => setModalState({ open: false, type: '' })}
                 title="Crystal Brawlers • Terms & Conditions"
             >
-                <div className="space-y-3 text-xs leading-relaxed text-violet-100/75">
-                    <p><strong>1. Acceptance of Terms:</strong> By creating an account or accessing Crystal Brawlers, you agree to comply with all rules and anti-cheat policies.</p>
-                    <p><strong>2. Age Requirement (18+):</strong> Users must be at least 18 years of age to register and participate in virtual currency transactions.</p>
-                    <p><strong>3. Virtual Currencies & Purchases:</strong> Gold Coins and Crystals are virtual game items with no real monetary conversion value.</p>
-                    <p><strong>4. Fair Play & Prohibited Behaviors:</strong> Automation, botting client hacks, or memory manipulation results in immediate permanent ban.</p>
-                </div>
+                <p className="text-sm text-violet-200/60">Last updated {POLICY_DATE}. <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline">Open full document in a new tab</a></p>
+                <PolicyBody policyKey="terms" />
             </Modal>
 
             <Modal
                 isOpen={modalState.open && modalState.type === 'privacy'}
                 onClose={() => setModalState({ open: false, type: '' })}
-                title="Crystal Brawlers • Privacy Policy (GDPR)"
+                title="Crystal Brawlers • Privacy Policy"
             >
-                <div className="space-y-3 text-xs leading-relaxed text-violet-100/75">
-                    <p><strong>1. Data Collection:</strong> We collect email, name, date of birth, and billing country solely for account security and compliance.</p>
-                    <p><strong>2. GDPR & Data Rights:</strong> You may request full export or deletion of your game records at any time through our support portal.</p>
-                    <p><strong>3. Security:</strong> All passwords and sensitive sessions are encrypted using industry-standard BCRYPT algorithms and HTTPS protocols.</p>
-                </div>
+                <p className="text-sm text-violet-200/60">Last updated {POLICY_DATE}. <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline">Open full document in a new tab</a></p>
+                <PolicyBody policyKey="privacy" />
             </Modal>
 
         </MainLayout>

@@ -71,6 +71,11 @@ class HandleInertiaRequests extends Middleware
             'game_config' => [
                 'ws_server_url' => env('ARENA_WS_URL', 'http://localhost:3008'),
             ],
+            'legal' => [
+                'session_cookie' => config('session.cookie'),
+                'session_lifetime' => config('session.lifetime'),
+                'session_expire_on_close' => config('session.expire_on_close'),
+            ],
             'company' => [
                 'name' => config('app.company.name', env('COMPANY_NAME', 'Crystal Brawlers Interactive Ltd.')),
                 'number' => config('app.company.number', env('COMPANY_NUMBER', '2026-EU-984210')),

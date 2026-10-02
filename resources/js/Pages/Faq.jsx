@@ -10,12 +10,12 @@ export default function Faq() {
         {
             category: 'Account & Security',
             q: 'How does the 18+ age verification work?',
-            a: 'Crystal Brawlers strictly requires players to be at least 18 years old upon registration. This ensures full compliance with international consumer protection laws and digital gaming regulations.',
+            a: 'You must be at least 18 to register. The form checks the date of birth you provide; it does not independently verify identity documents. Contact support if an eligibility check is incorrect.',
         },
         {
             category: 'Account & Security',
             q: 'Why is my country not available in the registration dropdown?',
-            a: 'In adherence to global sanctions, international regulatory frameworks, and AML compliance directives, registrations from restricted jurisdictions (including Russia, Belarus, DPRK, Iran, Syria, etc.) are strictly prohibited across our platform and backend APIs.',
+            a: 'Registration is available only in the supported countries shown on the form. Some countries are excluded by our service policy or applicable legal restrictions. See the Acceptable Use & Sanctions Policy for details.',
         },
         {
             category: 'Gameplay & Netcode',
@@ -35,7 +35,7 @@ export default function Faq() {
         {
             category: 'Purchases & Virtual Currency',
             q: 'Can I get a refund for skins or virtual upgrades?',
-            a: 'Virtual items (such as skins and stat upgrades) are consumed upon redemption and cannot be returned for real-world currency. All in-game purchases using earned coins are final.',
+            a: 'Contact support for missing, incorrect or defective items. Mandatory consumer remedies remain available, including cancellation rights for eligible unused paid currency. Free demo or earned credits have no cash payment to refund. See the Refund & Cancellation Policy for the procedure.',
         },
     ];
 

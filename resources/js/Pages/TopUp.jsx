@@ -66,6 +66,9 @@ export default function TopUp({ packages = [], auth }) {
 
             <section className="bg-[#150e2c] py-14 border-y-[3px] border-[#16102b]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+                    <div className="rounded-xl border border-cyan-300/30 bg-[#21163c] p-5 text-sm leading-6 text-violet-100/80">
+                        <strong className="text-white">Free demo checkout.</strong> The EUR amounts below are illustrative. No payment is collected. Credits are delivered to your current account and cannot be cashed out or transferred. By claiming a package you accept the <Link href="/terms" className="text-cyan-300 underline">Terms & Conditions</Link>; see our <Link href="/refund-policy" className="text-cyan-300 underline">Refund & Cancellation Policy</Link> and <Link href="/payment-security" className="text-cyan-300 underline">Payment & Delivery Information</Link>.
+                    </div>
                     <PackRow style={COIN_STYLE} packs={coinPacks} onBuy={buy} pending={pending} />
                     <PackRow style={CRYSTAL_STYLE} packs={crystalPacks} onBuy={buy} pending={pending} />
                 </div>
@@ -74,7 +77,7 @@ export default function TopUp({ packages = [], auth }) {
             <section className="bg-[#120c24] py-14">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-3 gap-5">
                     <Perk icon={Zap} title="Instant delivery" text="Currency is credited to your account the second the purchase completes." />
-                    <Perk icon={ShieldCheck} title="Nothing expires" text="Coins and crystals stay in your wallet forever — no seasonal resets." />
+                    <Perk icon={ShieldCheck} title="Game credits" text="Coins and Crystals are for this game only. Consumer rights apply to any future paid balances." />
                     <Perk icon={CreditCard} title="Demo checkout" text="Payments are not connected to a provider yet, so purchases here are free." />
                 </div>
 
@@ -142,12 +145,13 @@ function PackRow({ style, packs, onBuy, pending }) {
                                 {pkg.bonus > 0 ? `${pkg.amount.toLocaleString()} + ${pkg.bonus.toLocaleString()} bonus` : style.label}
                             </p>
 
+                            <p className="mt-3 text-center text-xs text-violet-100/60">Illustrative price: €{pkg.price.toFixed(2)} EUR · charged today: €0.00</p>
                             <button
                                 onClick={() => onBuy(pkg)}
                                 disabled={pending === pkg.id}
                                 className="toon-btn toon-btn-primary w-full justify-center mt-4 disabled:opacity-60"
                             >
-                                {pending === pkg.id ? 'Processing…' : `€${pkg.price.toFixed(2)}`}
+                                {pending === pkg.id ? 'Processing…' : 'Claim free demo'}
                             </button>
                         </div>
                     );
